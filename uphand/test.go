@@ -1,11 +1,13 @@
 package uphand
 
 import (
-	"net/http"
+	"github.com/gin-gonic/gin"
 )
 
 // 测试上传
-func Test(w http.ResponseWriter, r *http.Request) {
+func Test(c *gin.Context) {
+
+	w := c.Writer
 
 	html := `
 <html>

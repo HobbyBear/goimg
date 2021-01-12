@@ -4,6 +4,7 @@ import (
 	"bufio"
 	"crypto/md5"
 	"fmt"
+	"github.com/gin-gonic/gin"
 	"image"
 	"image/gif"
 	"image/jpeg"
@@ -18,7 +19,9 @@ import (
 type Controller struct {
 }
 
-func (this Controller) ServeHTTP(w http.ResponseWriter, r *http.Request) {
+func (this Controller) ServeHTTP(c *gin.Context) {
+	r := c.Request
+	w := c.Writer
 	if r.URL.String() == "/favicon.ico" {
 		return
 	}
@@ -218,7 +221,6 @@ func (this Controller) Post(w http.ResponseWriter, r *http.Request) {
 
 		}
 
-
 		if err != nil {
 			res.Code = StatusImgEncode
 			res.Msg = StatusText(StatusImgEncode)
@@ -228,7 +230,6 @@ func (this Controller) Post(w http.ResponseWriter, r *http.Request) {
 		}
 
 	}
-
 
 	res.Success = true
 	res.Code = StatusOK

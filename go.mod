@@ -3,6 +3,7 @@ module github.com/laixhe/goimg
 go 1.13
 
 require (
+	github.com/gin-gonic/gin v1.6.3
 	github.com/go-ini/ini v1.46.0
 	github.com/nfnt/resize v0.0.0-20180221191011-83c6a9932646
 	github.com/smartystreets/goconvey v0.0.0-20190731233626-505e41936337 // indirect

@@ -4,15 +4,18 @@ import (
 	"bufio"
 	"encoding/json"
 	"fmt"
+	"github.com/gin-gonic/gin"
 	"image"
-	"net/http"
 	"os"
 
 	"github.com/laixhe/goimg/imghand"
 )
 
 // 获取图片信息
-func Info(w http.ResponseWriter, r *http.Request) {
+func Info(c *gin.Context) {
+
+	r := c.Request
+	w := c.Writer
 
 	// 响应返回
 	res := new(UpdateResponse)
@@ -75,7 +78,9 @@ func Info(w http.ResponseWriter, r *http.Request) {
 }
 
 // 状态码
-func StatusCode(w http.ResponseWriter, r *http.Request) {
+func StatusCode(c *gin.Context) {
+
+	w := c.Writer
 	data, _ := json.Marshal(GetStatusText())
 	w.Write(data)
 }
