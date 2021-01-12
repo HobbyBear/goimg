@@ -10,40 +10,19 @@ import (
 	"image/jpeg"
 	"image/png"
 	"io"
-	"net/http"
 	"os"
 
 	"github.com/laixhe/goimg/imghand"
 )
 
-type Controller struct {
-}
-
-func (this Controller) ServeHTTP(c *gin.Context) {
+// 输出图片
+func Get(c *gin.Context) {
 	r := c.Request
 	w := c.Writer
-	if r.URL.String() == "/favicon.ico" {
-		return
-	}
-
-	if r.Method == "GET" {
-		this.Get(w, r)
-		return
-	}
-
-	if r.Method == "POST" {
-		this.Post(w, r)
-		return
-	}
-}
-
-// 输出图片
-func (this Controller) Get(w http.ResponseWriter, r *http.Request) {
-
-	urlParse := r.URL.String()
+	urlParse := c.Param("imgid")
 
 	// 组合文件完整路径
-	filePath := imghand.UrlParse(urlParse[1:])
+	filePath := imghand.UrlParse(urlParse)
 	if filePath == "" {
 		w.Write(showMain())
 		return
@@ -59,8 +38,9 @@ func (this Controller) Get(w http.ResponseWriter, r *http.Request) {
 }
 
 // 上传图片
-func (this Controller) Post(w http.ResponseWriter, r *http.Request) {
-
+func Post(c *gin.Context) {
+	r := c.Request
+	w := c.Writer
 	// 响应返回
 	res := new(UpdateResponse)
 

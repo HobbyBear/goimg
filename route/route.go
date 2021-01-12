@@ -9,8 +9,14 @@ import (
 // 注册访问路由
 func InitRoute() {
 
+	server.Engine.Use(server.CORS())
+
 	// 路由处理绑定
-	server.HandleFunc("/", uphand.Controller{})
+	server.Handle(http.MethodGet, "/getImg/:imgid", uphand.Get)
+
+	server.Handle(http.MethodGet, "/", uphand.Get)
+
+	server.Handle(http.MethodPost, "/", uphand.Post)
 
 	// 获取图片信息
 	server.Handle(http.MethodGet, "/info", uphand.Info)
