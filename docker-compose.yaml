@@ -4,6 +4,8 @@ services:
   imgserver:
     image: imgserver
     container_name: imgserver
+    networks:
+      bridge
     ports:
       - 8080:8080
     volumes:
@@ -12,5 +14,4 @@ services:
 networks:
   default:
     driver: bridge
-    name: bridge
 
