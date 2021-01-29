@@ -8,4 +8,4 @@ docker rmi imgserver
 
 docker build -t imgserver .
 
-docker-compose up
+docker-compose up -d
