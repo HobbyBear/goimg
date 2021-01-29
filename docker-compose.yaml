@@ -1,0 +1,14 @@
+version: "3"
+services:
+
+  imgserver:
+    image: imgserver
+    ports:
+      - 8080:8080
+    volumes:
+      - /home/server_images:/go/src/goimg/img
+
+networks:
+  default:
+    driver: bridge
+
