@@ -4,12 +4,13 @@ services:
   imgserver:
     image: imgserver
     container_name: imgserver
+    networks:
+      - test-network
     ports:
       - 8080:8080
     volumes:
       - /home/server_images:/go/src/goimg/img
 
 networks:
-  default:
-    external:
-      name: bridge
+  test-network:
+    driver: bridge
